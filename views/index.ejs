@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Message Sender</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        #qr-container {
+            margin: 20px auto;
+            width: 250px;
+            height: 250px;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        form {
+            margin-top: 20px;
+        }
+        .message {
+            margin: 20px;
+            font-size: 18px;
+            color: green;
+        }
+        .error {
+            margin: 20px;
+            font-size: 18px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>WhatsApp QR Code</h1>
+
+    <!-- Display QR Code -->
+    <% if (qrCode) { %>
+        <div>
+            <p>Scan this QR code using your WhatsApp app:</p>
+            <img src="<%= qrCode %>" alt="WhatsApp QR Code" />
+        </div>
+    <% } else { %>
+        <p>Waiting for the QR code...</p>
+    <% } %>
+
+    <!-- Upload File Form -->
+    <h2>Upload Excel File</h2>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" required />
+        <button type="submit">Upload</button>
+    </form>
+
+    <!-- Display Success or Error Message -->
+    <% if (success) { %>
+        <div style="color: green;"><%= success %></div>
+    <% } %>
+    <% if (error) { %>
+        <div style="color: red;"><%= error %></div>
+    <% } %>
+</body>
+</html>
